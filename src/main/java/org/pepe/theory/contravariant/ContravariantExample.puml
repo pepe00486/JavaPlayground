@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/class-diagram
+class ToolBox {
+    void store(Tool)
+}
+
+class Container extends ToolBox {
+void store(Item)
+}
+interface Item
+Tool --|> Item
+
+
+@enduml
