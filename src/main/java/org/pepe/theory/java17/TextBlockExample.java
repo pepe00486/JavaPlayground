@@ -2,7 +2,9 @@ package org.pepe.theory.java17;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-@SuppressWarnings("java:S1192")
+
+// Suppressing warnings, because this is just a demo code.
+@SuppressWarnings({"squid:S5663", "squid:S2629", "java:S4973", "java:S1192"})
 public class TextBlockExample {
     private static final Logger LOGGER = LoggerFactory.getLogger(TextBlockExample.class);
 
@@ -37,7 +39,6 @@ public class TextBlockExample {
         LOGGER.info(textBlock);
     }
 
-    @SuppressWarnings({"squid:S5663", "squid:S2629", "java:S4973"})
     private static void equalityExample() {
         String regular = "This is a text block";
         String textBlock = """
