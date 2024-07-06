@@ -66,8 +66,8 @@ public class TicTacToe implements Game {
         if (!board.playField(boardGameInput)) {
             System.out.println("Field already taken!");
             gameState.invalidate();
-        }
-        System.out.printf("Player %s playing %s at row %s and column %s%n", currentPlayer.name(), currentPlayer.symbol(), boardGameInput.row(), boardGameInput.column());
+        } else
+            System.out.printf("Player %s playing %s at row %s and column %s%n", currentPlayer.name(), currentPlayer.symbol(), boardGameInput.row(), boardGameInput.column());
 
         return boardGameInput;
     }
