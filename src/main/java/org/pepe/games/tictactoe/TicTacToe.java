@@ -10,7 +10,6 @@ import org.pepe.games.common.board.BoardGameInput;
 import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
-
 public class TicTacToe implements Game {
     private final InputHandler inputHandler;
     private final GameState gameState;

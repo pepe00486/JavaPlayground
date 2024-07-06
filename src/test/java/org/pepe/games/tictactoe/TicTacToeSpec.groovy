@@ -1,11 +1,8 @@
 package org.pepe.games.tictactoe
 
-import org.pepe.games.common.GameState
-import org.pepe.games.common.InputHandler
-import org.pepe.games.common.InputValidator
-import org.pepe.games.common.Player
-import org.pepe.games.common.PlayersPool
-import org.pepe.theory.games.common.*
+import org.pepe.games.common.*
+import org.pepe.games.common.board.Board
+import org.pepe.games.common.board.BoardGameInput
 import spock.lang.Specification
 
 class TicTacToeSpec extends Specification {
@@ -15,8 +12,8 @@ class TicTacToeSpec extends Specification {
     def 'gameLoop'() {
         given:
         GameState state = new GameState()
-        org.pepe.games.common.board.Board board = new org.pepe.games.common.board.Board(3)
-        ByteArrayInputStream inp = new ByteArrayInputStream("exit".getBytes());
+        Board board = new Board(3)
+        ByteArrayInputStream inp = new ByteArrayInputStream("exit".getBytes())
         System.setIn(inp)
         InputHandler inputHandler = new InputHandler(state, Mock(InputValidator), new Scanner(System.in))
         TicTacToe tikTakToe = new TicTacToe(inputHandler, state, board, playersPool)
@@ -30,11 +27,11 @@ class TicTacToeSpec extends Specification {
     def 'gameLoop last'() {
         given:
         GameState state = new GameState()
-        org.pepe.games.common.board.Board board = new org.pepe.games.common.board.Board(3)
+        Board board = new Board(3)
         board.initializeBoard("#")
-        board.playField(new org.pepe.games.common.board.BoardGameInput(0,1,"x") )
-        board.playField(new org.pepe.games.common.board.BoardGameInput(0,2,"x") )
-        ByteArrayInputStream inp = new ByteArrayInputStream("00".getBytes());
+        board.playField(new BoardGameInput(0,1,"x") )
+        board.playField(new BoardGameInput(0,2,"x") )
+        ByteArrayInputStream inp = new ByteArrayInputStream("00".getBytes())
         System.setIn(inp)
         def validator = Mock(InputValidator)
         validator.validateInput("00") >> true
@@ -52,8 +49,8 @@ class TicTacToeSpec extends Specification {
         GameState state = new GameState()
         state.start()
 
-        org.pepe.games.common.board.Board board = Mock()
-        board.playField(_ as org.pepe.games.common.board.BoardGameInput) >> valid
+        Board board = Mock()
+        board.playField(_ as BoardGameInput) >> valid
 
         when:
         def result = new TicTacToe(null, state, board, playersPool).playGameWithInput("00", playersPool.current())
@@ -73,7 +70,7 @@ class TicTacToeSpec extends Specification {
         GameState state = new GameState()
         state.start()
 
-        org.pepe.games.common.board.Board board = Mock()
+        Board board = Mock()
         board.getSize() >> 3
         board.hasNoSpaceLeft() >> hasNoSpace
         /*
@@ -91,7 +88,7 @@ class TicTacToeSpec extends Specification {
         board.getFieldValue(2, 1) >> '_'
         board.getFieldValue(2, 2) >> 'x'
         when:
-        new TicTacToe(null, state, board, playersPool).evaluateStateOfTheGame(new org.pepe.games.common.board.BoardGameInput(row, column, symbol))
+        new TicTacToe(null, state, board, playersPool).evaluateStateOfTheGame(new BoardGameInput(row, column, symbol))
         then:
         state.state == result
 
