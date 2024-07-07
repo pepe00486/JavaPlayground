@@ -1,9 +1,11 @@
 package org.pepe.games.common;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class PlayersPool {
+    @Getter
     private final Player[] players;
     private int currentIndex = 0;
 
@@ -14,5 +16,6 @@ public class PlayersPool {
     public void next() {
         currentIndex = currentIndex == players.length - 1 ? 0 : currentIndex + 1;
     }
+
 }
 

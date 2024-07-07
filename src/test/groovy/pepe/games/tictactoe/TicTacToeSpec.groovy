@@ -1,8 +1,9 @@
-package org.pepe.games.tictactoe
+package pepe.games.tictactoe
 
 import org.pepe.games.common.*
 import org.pepe.games.common.board.Board
 import org.pepe.games.common.board.BoardGameInput
+import org.pepe.games.tictactoe.TicTacToe
 import spock.lang.Specification
 
 class TicTacToeSpec extends Specification {
